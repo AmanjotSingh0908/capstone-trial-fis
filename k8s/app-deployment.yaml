@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: capstone-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: capstone-app
+  template:
+    metadata:
+      labels:
+        app: capstone-app
+    spec:
+      containers:
+      - name: capstone-app
+        image: capstone-app:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: MONGO_URI
+          value: "mongodb://mongo:27017/capstone"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: capstone-app
+spec:
+  selector:
+    app: capstone-app
+  ports:
+    - port: 3000
+      targetPort: 3000
+  type: LoadBalancer

@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/capstone
+    cap_add:
+      - NET_ADMIN
+    privileged: true
+
+  mongo:
+    build:
+      context: .
+      dockerfile: mongo.Dockerfile
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    privileged: true
+
+volumes:
+  mongo_data:
