@@ -5,7 +5,7 @@ This project implements a scalable, cloud-agnostic Fault Injection System (FIS) 
 ## Architecture
 
 ### **Experiment Orchestrator (SaaS)**
-- **Location**: Hosted on cloud (e.g., AWS, GCP)
+- **Location**: Hosted on cloud (e.g., AWS, GCP) [NOT FOR NOW, it's local as of now]
 - **Role**: Defines experiments, coordinates agents, aggregates results
 - **Tech**: Node.js + WebSockets for real-time communication
 - **APIs**: REST for experiment management, WS for agent communication
